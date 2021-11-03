@@ -14,13 +14,13 @@ RSpec.describe 'Security tests' do
 
   context 'Security testing' do
     it 'verifies that user can not get access to the website by using SQL injections' do
-      main_pg.enter_data(browser, 'SELECT * FROM table')
+      main_pg.enter_data(browser, SQL)
       main_pg.submit_search(browser).click
       expect(main_pg.posts(browser).text) == 'Nothing Found'
     end
 
     it 'verifies that user can not get access to the website by using XSS' do
-      main_pg.enter_data(browser, '<img src="http://url.to.file.which/not.exist" onerror=alert(document.cookie);>')
+      main_pg.enter_data(browser, XSS)
       main_pg.submit_search(browser).click
       expect(main_pg.posts(browser).text) == 'Nothing Found'
     end
