@@ -13,7 +13,7 @@ RSpec.describe 'Active page elements' do
 
   after(:all) { browser.close }
 
-  # Positive testing
+# Test process (FUnctional testing)
 
   it 'verifies that user can not find unexisted info' do
     main_pg.enter_data(browser, INVALID_DATA)

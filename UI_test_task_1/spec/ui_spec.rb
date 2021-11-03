@@ -16,9 +16,10 @@ RSpec.describe 'UI test on the main page' do
 
 
   after(:all) { browser.close }
+  
+# UI TESTING (MAIN PAGE)
   context 'UI checking' do
 
-# UI TESTING
   	it 'verifiies that banner is displayed' do
   		expect(main_pg.banner(browser).displayed?).to be(true)
   	end
@@ -76,6 +77,7 @@ RSpec.describe 'UI test on the main page' do
   	end
   end
 
+# UI TESTING (COMMENTS & POST PAGE)
   context 'Comments page' do
     it 'verifies that comment field is displayed' do
       main_pg.post_example(browser).click
