@@ -23,9 +23,9 @@ Scenario: User can not register an existed patient
 Scenario: User can add a new task in the system administration page
   Given system administration page
   When user click on the manage scheduler page
-  Then user can add tasks to the current page
+  Then user can see added tasks on the page
 
-Scenario: User can merge records for two patients
+Scenario: User can merge records of two patients
   Given data management page
   When user click on the merge patient records
   Then user can get a merged record

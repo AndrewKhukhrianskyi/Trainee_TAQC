@@ -14,7 +14,7 @@ class Page
   def find_patient_btn
     browser.find_element(id: 'coreapps-activeVisitsHomepageLink-coreapps-activeVisitsHomepageLink-extension')
   end
-  
+
   def columm(data)
     browser.find_element(name: data)
   end
@@ -82,6 +82,69 @@ class Page
 
     submit_btn.click
   end
+
+  def admin_btn
+    browser.find_element(id: 'coreapps-systemadministration-homepageLink-coreapps-systemadministration-homepageLink-extension')
+  end
+
+  def adv_btn
+    browser.find_element(id: 'referenceapplication-legacyAdmin-app')
+  end
+
+  def scheduler
+    browser.find_element(link_text: 'Manage Scheduler')
+  end
+
+  def add_task
+    browser.find_element(link_text: 'Add Task')
+  end
+
+  def task_name_field
+    browser.find_element(xpath: '//form/fieldset/table/tbody/tr[2]/td[2]')
+  end
+
+  def subtitle_field
+    browser.find_element(xpath: '//form/fieldset/table/tbody/tr[3]/td[2]')
+  end
+
+  def save_btn
+    browser.find_element(text: 'Save')
+  end
+
+  def find_task(data)
+    browser.find_element(link_text: data)
+  end
+
+  def data_mng_btn
+    browser.find_element(id: 'coreapps-datamanagement-homepageLink-coreapps-datamanagement-homepageLink-extension')
+  end
+
+  def merge_btn
+    browser.find_element(id: 'coreapps-mergePatientsHomepageLink-app')
+  end
+
+  def patient_id_1
+    browser.find_element(id: 'patient1-text')
+  end
+
+  def patient_id_2
+    browser.find_element(id: 'patient2-text')
+  end
+
+  def merge_confirm_btn
+    browser.find_element(id: 'confirm-button')
+  end
+
+  def merge_patient
+    browser.find_element(id: 'second-patient')
+  end
+
+  def home_btn
+    browser.find_element(class: 'icon-home small')
+  end
+
+
+
 
 
 
