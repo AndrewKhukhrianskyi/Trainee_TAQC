@@ -6,6 +6,8 @@ require 'capybara'
 
 require_relative '../env/common_variables'
 require_relative '../pages/main_page'
+require_relative '../drivers/driver'
+
 
 
 
