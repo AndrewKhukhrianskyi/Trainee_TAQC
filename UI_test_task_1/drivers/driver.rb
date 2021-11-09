@@ -7,7 +7,7 @@ require 'pry'
 # Adds Driver class which helps to execute tests
 class Driver
   def initialize
-    return if ENV['BROWSER'].nil?
+    return 'NO BROWSER!' if ENV['BROWSER'].nil?
     $driver = Selenium::WebDriver.for ENV['BROWSER'].to_sym
   end
 end

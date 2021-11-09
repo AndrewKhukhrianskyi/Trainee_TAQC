@@ -14,13 +14,13 @@ RSpec.describe 'Active page elements' do
   # Positive testing
 
   it 'verifies that user can not find unexisted info' do
-    main_pg.enter_data(browser, INVALID_DATA)
+    main_pg.enter_data(INVALID_DATA)
     main_pg.submit_search.click
     expect(main_pg.posts.text) == 'Nothing Found'
   end
 
   it 'verifies that user can find existed info' do
-    main_pg.enter_data(browser, VALID_DATA)
+    main_pg.enter_data(VALID_DATA)
     main_pg.submit_search.click
     expect(main_pg.posts.text) == 'Search Results for: ' + VALID_DATA
   end
