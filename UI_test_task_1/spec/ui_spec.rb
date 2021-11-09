@@ -14,6 +14,9 @@ RSpec.describe 'UI test on the main page' do
 
   after(:all) { browser.close }
   context 'UI checking' do
+    #it 'verifies that all UI objects are displayed' do
+      #@ui.each{|widget| expect(widget.displayed?).to be(true)}
+    #end
 
 # UI TESTING
   	it 'verifiies that banner is displayed' do
@@ -64,7 +67,7 @@ RSpec.describe 'UI test on the main page' do
   		expect(main_pg.entry_title.displayed?).to be(true)
   	end
 
-  	it 'Verify that comment is displayed' do
+  	it 'verifies that comment is displayed' do
   		expect(main_pg.entry_data.displayed?).to be(true)
   	end
 
