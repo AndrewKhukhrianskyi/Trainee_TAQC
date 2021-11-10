@@ -5,7 +5,7 @@ class Page
 
   # ATTENTION - UNSECURE (Login and pasword can be send without any encryption)
   def login(username, pwd)
-    browser.find_element(id: 'username').send_keys(usename)
+    browser.find_element(id: 'username').send_keys(username)
     browser.find_element(id: 'password').send_keys(pwd)
     browser.find_element(id: 'Inpatient Ward').click()
     browser.find_element(id: 'loginButton').click()

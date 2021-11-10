@@ -19,7 +19,7 @@ When('opening patient page') do
 end
 
 Then('patient table is not empty') do
-  PATIENT_INFO.each{|text| !expect(main_pg.columm(text)) == ''}
+  PATIENT_INFO.each{|data| !expect(main_pg.columm(data).text) == ''}
   page_obj.home_btn.click
 end
 
@@ -31,7 +31,7 @@ end
 Then('user can create a new patient') do
   page_obj.find_patient_btn.click
   res = PATIENT_NAME + PATIENT_DATE
-  res.each{|text| expect(main_pg.columm(text)) == text}
+  res.each{|data| expect(main_pg.columm(data).text) == data}
   page_obj.home_btn.click
 end
 
@@ -41,7 +41,7 @@ end
 
 Then('user can not create an existing patient') do
   page_obj.find_patient_btn.click
-  !expect(page_obj.url_include?) == 'index'
+  expect(page_obj.url_include?) == 'patientid'
   page_obj.home_btn.click
 end
 
