@@ -7,4 +7,4 @@ PATIENT_DATE = ['25', '1984']
 GENDER = ['Male', 'Female']
 MONTHS = ['January', 'February', 'March', 'April', 'June', 'July', 'August',
           'September', 'October', 'November', 'December']
-          
+NON_IDS = [['100HM1','100HM1'], ['208HRQ', '880NNN'] ]

@@ -63,7 +63,7 @@ class Page
     browser.find_element(id: 'submit')
   end
 
-  def reg_process(patient_fullname, patient_birthdate, gndr, m):
+  def reg_process(patient_fullname, patient_birthdate, gndr, m)
     # Full name page
     reg_btn.click
     name.send_keys(patient_fullname[0]) # name
@@ -123,10 +123,12 @@ class Page
     browser.find_element(id: 'coreapps-mergePatientsHomepageLink-app')
   end
 
-  def patient_id
-    arr_id = [browser.find_element(id: 'patient1-text'),
-              browser.find_element(id: 'patient2-text')]
-    arr_id
+  def patient_id1
+    browser.find_element(id: 'patient1-text')
+  end
+
+  def patient_id2
+    browser.find_element(id: 'patient2-text')
   end
 
   def merge_confirm_btn

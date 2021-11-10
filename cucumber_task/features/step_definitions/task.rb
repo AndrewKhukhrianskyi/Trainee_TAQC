@@ -3,8 +3,9 @@ require_relative 'config'
 
 # Constants
 page_obj = Page.new
-patients = page_obj.patient_id
-
+when_patient = 'user click on the merge patient records'
+then_patient = ['user can not merge records of the same patient',
+                'user can not get a merged record of the non-existed patients']
 # Test execution
 browser.get(MAIN_PAGE)
 
@@ -38,7 +39,7 @@ When('When register patient is opened and all data fields are filled') do
   page_obj.reg_process(PATIENT_NAME, PATIENT_DATE, GENDER[0], MONTHS[0])
 end
 
-Then('user can not create an existed patient') do
+Then('user can not create an existing patient') do
   page_obj.find_patient_btn.click
   !expect(page_obj.url_include?) == 'index'
   page_obj.home_btn.click
@@ -56,7 +57,7 @@ end
 
 Then('user can see added tasks on the page') do
   expect(page_obj.find_task('Test task').displayed?).to be(true)
-  browser.close()
+  browser.close() # Need for the reopening page
 end
 
 Given('data management page is opened') do
@@ -66,45 +67,35 @@ end
 When('user click on the merge patient records') do
   page_obj.data_mng_btn.click
   page_obj.merge_btn.click
-  patients[0].send_keys('100HRU') # First patient
-  patients[1].send_keys('100HM1') # Second patient
+  page_obj.patient_id1.send_keys('100HRU') # First patient
+  page_obj.patient_id2.send_keys('100HM1') # Second patient
   page_obj.merge_confirm_btn.click
   page_obj.merge_patient.click
   page_obj.home_btn.click
   page_obj.find_patient_btn.click
 end
 
+
 Then('user can get a merged record') do
-  # Patient info is not changed after merging (specific test data)
   PATIENT_INFO.each{|text| !expect(main_pg.columm(text).displayed?).to be(true)}
   page_obj.home_btn.click
 end
 
-# One and same patient
-When('user click on the merge patient records') do
-  page_obj.data_mng_btn.click
-  page_obj.merge_btn.click
-  patients[0].send_keys('100HRU')
-  patients[1].send_keys('100HRU')
-  page_obj.merge_confirm_btn.click
-end
+# Negative tests merging
+# Non-existed patient & Patient with the same ID
+for patient_task in 0..then_patient.length - 1
+  When(when_patient) do
+    page_obj.data_mng_btn.click
+    page_obj.merge_btn.click
+    page_obj.patient_id1.send_keys(NON_IDS[patient_task][0])
+    page_obj.patient_id2.send_keys(NON_IDS[patient_task][1])
+    page_obj.merge_confirm_btn.click
+  end
 
-Then('user can not get a merged record of the one and same patient') do
-  expect(page_obj.url_include?('mergePatients')).to be(true)
-  page_obj.home_btn.click
-end
+  Then(then_patient[patient_task]) do
+    expect(page_obj.url_include?('mergePatients')).to be(true)
+  end
 
-# Unexisted patients
-When('user click on the merge patient records') do
-  page_obj.data_mng_btn.click
-  page_obj.merge_btn.click
-  patients[0].send_keys('139HMI')
-  patients[1].send_keys('250QQQ')
-  page_obj.merge_confirm_btn.click
-end
-
-Then('user can not get a merged record of the non-existed patients') do
-  expect(page_obj.url_include?('mergePatients')).to be(true)
 end
 
 browser.close()
