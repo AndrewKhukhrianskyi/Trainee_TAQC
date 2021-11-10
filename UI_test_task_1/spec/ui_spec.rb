@@ -5,19 +5,18 @@ require_relative 'spec_helper'
 
 # Test execution process
 RSpec.describe 'UI test on the main page' do
+
   main_pg = MainPage.new
+
 
   before(:all) do
     browser.get(MAIN_PAGE)
+    #start(main_pg)
   end
 
 
   after(:all) { browser.close }
   context 'UI checking' do
-    #it 'verifies that all UI objects are displayed' do
-      #@ui.each{|widget| expect(widget.displayed?).to be(true)}
-    #end
-
 # UI TESTING
   	it 'verifiies that banner is displayed' do
   		expect(main_pg.banner.displayed?).to be(true)
