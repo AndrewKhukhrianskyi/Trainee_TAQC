@@ -93,6 +93,7 @@ for patient_task in 0..then_patient.length - 1
   end
 
   Then(then_patient[patient_task]) do
+    # add button blocking
     expect(page_obj.url_include?('mergePatients')).to be(true)
   end
 
