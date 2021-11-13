@@ -14,9 +14,12 @@ RSpec.describe 'UI test on the main page' do
   after(:all) { browser.close }
   context 'Main page' do
 
-    it 'verifies that widgets are displayed' do
-      main_pg.widgets.each{|w| expect(w.displayed?).to be(true)}
-    end
+    for wdg in 0..main_pg.widgets.length - 1
+      it "verifies that #{main_pg.widgets[wdg]} is displayed" do
+         expect(main_pg.widgets[wdg].displayed?).to be(true)
+       end
+     end
+
   end
 
   context 'Comments page' do
