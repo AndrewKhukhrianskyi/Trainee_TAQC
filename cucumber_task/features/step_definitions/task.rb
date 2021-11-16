@@ -7,10 +7,17 @@ when_patient = 'user click on the merge patient records'
 then_patient = ['user can not merge records of the same patient',
                 'user can not get a merged record of the non-existed patients']
 # Test execution
-browser.get(MAIN_PAGE)
+Before do
+  browser.get(MAIN_PAGE)
+  page_obj.login('admin', 'Admin123')
+end
+
+After do
+  browser.close()
+end
 
 Given('patient page is opened') do
-  page_obj.login('admin', 'Admin123')
+
 end
 
 
@@ -81,8 +88,8 @@ Then('user can get a merged record') do
   page_obj.home_btn.click
 end
 
-# Negative tests merging
-# Non-existed patient & Patient with the same ID
+  # Negative tests merging
+  # Non-existed patient & Patient with the same ID
 for patient_task in 0..then_patient.length - 1
   When(when_patient) do
     page_obj.data_mng_btn.click
@@ -93,10 +100,7 @@ for patient_task in 0..then_patient.length - 1
   end
 
   Then(then_patient[patient_task]) do
-    # add button blocking
+      # add button blocking
     expect(page_obj.url_include?('mergePatients')).to be(true)
   end
-
 end
-
-browser.close()
