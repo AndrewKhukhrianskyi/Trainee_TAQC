@@ -1,10 +1,12 @@
 # File, which helps add all gems to the current file
 require_relative 'spec_helper'
 
+# Test constants
+main_pg = MainPage.new
 
 # Test execution process
 RSpec.describe 'UI test on the main page' do
-  main_pg = MainPage.new
+
 
   before(:all) do
     browser.get(MAIN_PAGE)
@@ -14,18 +16,19 @@ RSpec.describe 'UI test on the main page' do
   after(:all) { browser.close }
   context 'Main page' do
 
-    for wdg in 0..main_pg.widgets.length - 1
-      it "verifies that #{main_pg.widgets[wdg]} is displayed" do
-         expect(main_pg.widgets[wdg].displayed?).to be(true)
-       end
-     end
+      it "verifies that current widget is displayed" do
 
-  end
+         main_pg.widgets.each do |widget|
+           puts widget
+           expect(widget.displayed?).to be(true)
+         end
+      end
+    end
 
   context 'Comments page' do
     it 'verifies that widgets are displayed' do
       main_pg.post_example.click
-      main_pg.comments_wdg.each{|w| expect(w.displayed?).to be(true)}
+      main_pg.comments_wdg.each{|widget| expect(widget.displayed?).to be(true)}
     end
   end
 end
