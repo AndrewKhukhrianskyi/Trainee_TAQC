@@ -4,7 +4,7 @@ require 'cucumber'
 require 'selenium/webdriver'
 require 'rspec'
 
-# Custom ruby files
+# Custom ruby files import
 require_relative '../../env/common_variables'
 require_relative '../../page/page_class'
 require_relative '../../env/driver'

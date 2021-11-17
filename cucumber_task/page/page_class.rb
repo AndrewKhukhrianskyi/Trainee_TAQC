@@ -7,7 +7,7 @@ class Page
   def login(username, pwd)
     browser.find_element(id: 'username').send_keys(username)
     browser.find_element(id: 'password').send_keys(pwd)
-    browser.find_element(id: 'Inpatient Ward').click()
+    browser.find_element(xpath: '//ul/li[1]').click()
     browser.find_element(id: 'loginButton').click()
   end
 
@@ -15,8 +15,28 @@ class Page
     browser.find_element(id: 'coreapps-activeVisitsHomepageLink-coreapps-activeVisitsHomepageLink-extension')
   end
 
-  def columm(data)
-    browser.find_element(name: data)
+  def columm_id
+    browser.find_element(xpath: '//tr[1]/td[1]')
+  end
+
+  def column_name
+    browser.find_element(xpath: '//tr[1]/td[2]')
+  end
+
+  def column_gender
+    browser.find_element(xpath: '//tr[1]/td[3]')
+  end
+
+  def column_age
+    browser.find_element(xpath: '//tr[1]/td[4]')
+  end
+
+  def column_date
+    browser.find_element(xpath: '//tr[1]/td[5]')
+  end
+
+  def column_arr
+    cols = [column_id, column_name, column_gender, column_age, column_date]
   end
 
   def reg_btn
@@ -81,6 +101,10 @@ class Page
     nxt_btn.click
 
     submit_btn.click
+  end
+
+  def patient_id_icon
+    browser.find_element(xpath: "div/em/span[contains(text(), '100')]")
   end
 
   def admin_btn

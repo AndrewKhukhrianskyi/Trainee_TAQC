@@ -12,33 +12,30 @@ Before do
   page_obj.login('admin', 'Admin123')
 end
 
+
 After do
   browser.close()
 end
-
-Given('patient page is opened') do
-
-end
-
 
 When('opening patient page') do
   page_obj.find_patient_btn.click
 end
 
 Then('patient table is not empty') do
-  PATIENT_INFO.each{|data| !expect(main_pg.columm(data).text) == ''}
+  page_obj.column_arr.each{|col| expect(col.text.empty?).to be(false)}
   page_obj.home_btn.click
 end
 
 
 When('register patient is opened and all data fields are filled') do
   page_obj.reg_process(PATIENT_NAME, PATIENT_DATE, GENDER[0], MONTHS[0])
+  patient_id = page_obj.patient_id_icon.text.to_a
 end
 
 Then('user can create a new patient') do
   page_obj.find_patient_btn.click
-  res = PATIENT_NAME + PATIENT_DATE
-  res.each{|data| expect(main_pg.columm(data).text) == data}
+  res = patient_id + PATIENT_NAME + PATIENT_DATE
+  res.each{|data| expect(main_pg.columm(data).text).include?(data)}
   page_obj.home_btn.click
 end
 
@@ -69,6 +66,7 @@ end
 
 Given('data management page is opened') do
   browser.get(MAIN_PAGE)
+  page_obj.login('admin', 'Admin123')
 end
 
 When('user click on the merge patient records') do
@@ -100,7 +98,6 @@ for patient_task in 0..then_patient.length - 1
   end
 
   Then(then_patient[patient_task]) do
-      # add button blocking
-    expect(page_obj.url_include?('mergePatients')).to be(true)
+    expect(page_obj.url_include?('mergePatients') && page_obj.merge_confirm_btn.enabled?).to be(true)
   end
 end
