@@ -98,6 +98,6 @@ for patient_task in 0..then_patient.length - 1
   end
 
   Then(then_patient[patient_task]) do
-    expect(page_obj.url_include?('mergePatients') && page_obj.merge_confirm_btn.enabled?).to be(true)
+    expect(page_obj.url_include?('mergePatients') && !page_obj.merge_confirm_btn.enabled?).to be(true)
   end
 end
