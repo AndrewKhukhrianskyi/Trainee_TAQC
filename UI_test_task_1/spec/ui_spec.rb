@@ -19,18 +19,18 @@ RSpec.describe 'UI test on the main page' do
   after(:all) { browser.close }
 
   context 'Main page' do
-    @mass_obj.each do |widget|
       it 'verifes that current widget is displayed' do
-          expect(widget.displayed?).to be(true)
+          @mass_obj.each do |widget|
+            expect(widget.displayed?).to be(true)
       end
     end
   end
 
   context 'Comments page' do
     main_pg.post_example.click
-    @comments_mass_obj.each do |widget|
       it 'verifies that widgets on the comment page are displayed' do
-        expect(widget.displayed?).to be(true)
+        @comments_mass_obj.each do |widget|
+          expect(widget.displayed?).to be(true)
       end
     end
   end
