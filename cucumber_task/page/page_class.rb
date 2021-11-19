@@ -40,19 +40,19 @@ class Page
   end
 
   def reg_btn
-    browser.find_element(id: 'registrationapp-basicRegisterPatient-homepageLink-registrationapp-basicRegisterPatient-homepageLink-extension')
+    browser.find_element(id: 'rreferenceapplication-registrationapp-registerPatient-homepageLink-referenceapplication-registrationapp-registerPatient-homepageLink-extension')
   end
 
   def name
-    browser.find_element(id: 'fr8399-field')
+    browser.find_element(id: 'fr8105-field')
   end
 
   def middle_name
-    browser.find_element(id: 'fr6602-field')
+    browser.find_element(id: 'fr5134-field')
   end
 
   def surename
-    browser.find_element(id: 'fr6602-field')
+    browser.find_element(id: 'fr7202-field')
   end
 
   def gender(sex) # Male or Female
@@ -61,6 +61,10 @@ class Page
 
   def nxt_btn
     browser.find_element(id: 'next-button')
+  end
+
+  def right_nxt_btn
+    browser.find_element(class: 'confirm right')
   end
 
   def day
@@ -83,23 +87,38 @@ class Page
     browser.find_element(id: 'submit')
   end
 
-  def reg_process(patient_fullname, patient_birthdate, gndr, m)
+  def address
+    browser.find_element(id: 'address1')
+  end
+
+  def phone
+    browser.find_element(id: 'fr7772-field')
+  end
+
+  def reg_process(data_list, mnths, gndr)
     # Full name page
     reg_btn.click
-    name.send_keys(patient_fullname[0]) # name
-    middle_name.send_keys(patient_fullname[1]) # Middle name
-    surename.send_keys(patient_fullname[2]) # Surename
+    name.send_keys(data_list[0]) # name
+    middle_name.send_keys(data_list[1]) # Middle name
+    surename.send_keys(data_list[2]) # Surename
     nxt_btn.click
     # Gender page
     gender(gndr[0]).click
-    nxt_btn.click
+    right_nxt_btn.click
     # Date page
-    day.send_keys(patient_birthdate[0]) # day
-    month(m[0]).click # month
-    month_set.click
-    year.send_keys(patient_birthdate[1]) # year
-    nxt_btn.click
-
+    day.send_keys(data_list[3]) # day
+    month.click # month
+    month_set(mnths[0]).click
+    year.send_keys(data_list[4]) # year
+    right_nxt_btn.click
+    # Address
+    address.send_keys(data_list[5])
+    right_nxt_btn.click
+    # Phone
+    phone.send_keys(data_list[6])
+    right_nxt_btn.click
+    #skip relationships
+    right_nxt_btn.click
     submit_btn.click
   end
 

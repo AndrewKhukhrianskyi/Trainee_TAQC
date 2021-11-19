@@ -6,6 +6,7 @@ page_obj = Page.new
 when_patient = 'user click on the merge patient records'
 then_patient = ['user can not merge records of the same patient',
                 'user can not get a merged record of the non-existed patients']
+id_list = []
 # Test execution
 Before do
   browser.get(MAIN_PAGE)
@@ -28,13 +29,13 @@ end
 
 
 When('register patient is opened and all data fields are filled') do
-  page_obj.reg_process(PATIENT_NAME, PATIENT_DATE, GENDER[0], MONTHS[0])
+  page_obj.reg_process(PATIENT_DATE, GENDER[0], MONTHS[0])
   patient_id = page_obj.patient_id_icon.text.to_a
 end
 
 Then('user can create a new patient') do
   page_obj.find_patient_btn.click
-  res = patient_id + PATIENT_NAME + PATIENT_DATE
+  res = patient_id >> PATIENT_SHORT_INFO
   res.each{|data| expect(main_pg.columm(data).text).include?(data)}
   page_obj.home_btn.click
 end
@@ -45,7 +46,7 @@ end
 
 Then('user can not create an existing patient') do
   page_obj.find_patient_btn.click
-  expect(page_obj.url_include?) == 'patientid'
+  expect(page_obj.submit_btn.enabled?).to be(false)
   page_obj.home_btn.click
 end
 
