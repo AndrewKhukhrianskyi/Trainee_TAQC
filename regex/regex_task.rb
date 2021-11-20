@@ -2,11 +2,12 @@
 puts 'TASK 1 - FIND EMAIL'
 puts '-------------------'
 puts 'RESULTS: '
-regex_arr = ['test@softserveic.com', 'spam',
+regex_arr = ['test@softserveinc.com', 'spam',
             'eggs', 'xxx', 'iriska2015@test.com',
-            'anotheremail@ukr.net', 'qqq', '123@test.com']
+            'anotheremail@ukr.net', 'qqq', '123@test.com',
+            'test-example@test.com']
 
-regex_arr.each{|is_email| puts "#{is_email} is email" if !is_email.match('^[a-zA-Z0-9]+\S[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-z]+').is_a? NilClass}
+regex_arr.each{|is_email| puts "#{is_email} is email" if !is_email.match('^[a-zA-Z0-9]+\S[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-z]+$').is_a? NilClass}
 
 puts ''
 # Task 2 - Extract from URL
