@@ -14,10 +14,6 @@ Before do
 end
 
 
-After do
-  browser.close()
-end
-
 When('opening patient page') do
   page_obj.find_patient_btn.click
 end
@@ -28,12 +24,12 @@ Then('patient table is not empty') do
 end
 
 
-When('register patient is opened and all data fields are filled') do
+When('user fills all fields on patient register page') do
   page_obj.reg_process(PATIENT_DATE, GENDER[0], MONTHS[0])
   patient_id = page_obj.patient_id_icon.text.to_a
 end
 
-Then('user can create a new patient') do
+Then('new patient is created') do
   page_obj.find_patient_btn.click
   res = patient_id >> PATIENT_SHORT_INFO
   res.each{|data| expect(main_pg.columm(data).text).include?(data)}
@@ -101,4 +97,8 @@ for patient_task in 0..then_patient.length - 1
   Then(then_patient[patient_task]) do
     expect(page_obj.url_include?('mergePatients') && !page_obj.merge_confirm_btn.enabled?).to be(true)
   end
+end
+
+Afer do
+  browser.close()
 end
