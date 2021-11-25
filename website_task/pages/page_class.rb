@@ -2,76 +2,54 @@ class WebPage
   def url_include?(value)
     browser.current_url.include?(value)
   end
-
-  def shop_login_btn
-    browser.find_element(xpath: '//div/div/a[@href="https://reloading.com.ua/auth"]')
+  
+  def open_log_tab_btn
+    browser.find_element(class: "fas fa-chevron-down")
   end
 
-  def reg_btn
-    browser.find_element(class: 'form__link')
+  def reg_link
+    browser.find_element(link_text: 'Реєстрація')
   end
 
-  def name
-    browser.find_element(xpath: '//div/div[@name = "username"]')
+  def name_field
+    browser.find_element(id: 'input-firstname')
   end
 
-  def email
-    browser.find_element(xpath: '//div/div[@name = "email"]')
+  def surename_field
+    browser.find_element(id: 'input-lastname')
   end
 
-  def city
-    browser.find_element(xpath: '//div/div[@name = "custom_field[123]"')
+  def pwd_field
+    browser.find_element(id: 'input-password')
   end
 
-  def pwd
-    browser.find_element(xpath: '//div/div[@name = "password"')
+  def email_field
+    browser.find_element(id: 'input-email')
+  end
+
+  def phone_field
+    browser.find_element(id: 'input-telephone')
   end
 
   def confirm_pwd
-    browser.find_element(xpath: '//div/div[@name = "confirm_password"')
+    browser.find_element(id: 'input-confirm')
   end
 
-  def reg_confirm_btn
-    browser.find_element(class: 'btn btn-primary')
+  def reg_btn
+    browser.find_element(class: 'register__button')
   end
 
-  def success_message
-    browser.find_element(class: 'content__title')
+  def success_title
+    browser.find_element(class: 'success__title')
   end
 
   def reg_process(data)
-    shop_login_btn.click
-    reg_btn.click
-    data_fields = [name, email, city, pwd, confirm_pwd]
+    open_log_tab_btn.click
+    reg_link.click
+    reg_widgets = [name_field, surename_field, email_field, pwd_field, confirm_pwd, phone_field]
 
-    for text in 0..data_fields.length - 1
-      data_fields[text].send_keys(data[text])
+    for wdg_data in 0..data.length
+      reg_widgets[wdg_data].send_keys(data[wdg_data])
     end
-
-    reg_confirm_btn.click
-  end
-
-  def item_tab
-    browser.find_element(xpath: '//ul[@class="main-nav__items"]/li/a[@href="https://reloading.com.ua/maxpedition"]]')
-  end
-
-  def item_box
-    browser.find_element(text: 'Тактические рюкзаки')
-  end
-
-  def item
-    browser.find_element(link_text: 'Рюкзак Maxpedition FALCON-II')
-  end
-
-  def buy_btn
-    browser.find_element(class: 'btn btn-primary btn-lg')
-  end
-
-  def cart_tab
-    browser.find_element(text: 'Моя корзина')
-  end
-
-  def cart_tab_item
-    browser.find_element(class: 'cart-product')
   end
 end
