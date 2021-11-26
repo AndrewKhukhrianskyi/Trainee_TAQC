@@ -3,6 +3,14 @@ class Page
     browser.current_url.include?(data)
   end
 
+  def home_btn
+    browser.find_element(xpath: '//ul/li/a/i[@class="icon-home small"]')
+  end
+
+  def home_nav_btn
+    browser.find_task(id: 'homeNavLink')
+  end
+
   # ATTENTION - UNSECURE (Login and pasword can be send without any encryption)
   def login(username, pwd)
     browser.find_element(id: 'username').send_keys(username)
@@ -40,23 +48,23 @@ class Page
   end
 
   def reg_btn
-    browser.find_element(id: 'rreferenceapplication-registrationapp-registerPatient-homepageLink-referenceapplication-registrationapp-registerPatient-homepageLink-extension')
+    browser.find_element(xpath: '//div/div/a[3]')
   end
 
   def name
-    browser.find_element(id: 'fr8105-field')
+    browser.find_element(xpath: '//div/p/input[@name="givenName"]')
   end
 
   def middle_name
-    browser.find_element(id: 'fr5134-field')
+    browser.find_element(xpath: '//div/p/input[@name="middleName"]')
   end
 
   def surename
-    browser.find_element(id: 'fr7202-field')
+    browser.find_element(xpath: '//div/p/input[@name="familyName"]')
   end
 
   def gender(sex) # Male or Female
-    browser.find_element(name: sex)
+    browser.find_element(xpath: '//select/option[@value="M"]')
   end
 
   def nxt_btn
@@ -64,19 +72,19 @@ class Page
   end
 
   def right_nxt_btn
-    browser.find_element(class: 'confirm right')
+    browser.find_element(xpath: "//div/button[@id='next-button']")
   end
 
   def day
-    browser.find_element(id: 'birthdateDay-field')
+    browser.find_element(xpath: "//p/input[@id='birthdateDay-field']")
   end
 
   def month
-    browser.find_element(id: 'birthdateMonth-field')
+    browser.find_element(xpath: "//p/select[@id='birthdateMonth-field']")
   end
 
-  def month_set(mnth)
-    browser.find_element(name: mnth)
+  def month_set(month_value)
+    browser.find_element(xpath: "//p/select/option[@value=#{month_value}]")
   end
 
   def year
@@ -87,43 +95,51 @@ class Page
     browser.find_element(id: 'submit')
   end
 
+  def relatives
+    browser.find_element(xpath:'//p/select[@id=relationship_type]')
+  end
+
+  def relatives_set
+    browser.find_element(xpath:'//select/option[@value = "8d919b58-c2cc-11de-8d13-0010c6dffd0f-B"]')
+  end
+
   def address
-    browser.find_element(id: 'address1')
+    browser.find_element(xpath: '//p/input[@id = "address1"]')
   end
 
   def phone
-    browser.find_element(id: 'fr7772-field')
+    browser.find_element(xpath: '//p/input[@name = "phoneNumber"]')
   end
 
-  def reg_process(data_list, mnths, gndr)
+  def reg_process(page_obj, data_list, mnths, gndr)
     # Full name page
-    reg_btn.click
-    name.send_keys(data_list[0]) # name
-    middle_name.send_keys(data_list[1]) # Middle name
-    surename.send_keys(data_list[2]) # Surename
-    nxt_btn.click
+    page_obj.reg_btn.click
+    page_obj.name.send_keys(data_list[0]) # name
+    page_obj.middle_name.send_keys(data_list[1]) # Middle name
+    page_obj.surename.send_keys(data_list[2]) # Surename
+    page_obj.nxt_btn.click
     # Gender page
-    gender(gndr[0]).click
-    right_nxt_btn.click
+    page_obj.gender(gndr[0]).click
+    page_obj.right_nxt_btn.click
     # Date page
-    day.send_keys(data_list[3]) # day
-    month.click # month
-    month_set(mnths[0]).click
-    year.send_keys(data_list[4]) # year
-    right_nxt_btn.click
+    page_obj.day.send_keys(data_list[3]) # day
+    page_obj.month.click # month
+    page_obj.month_set(mnths[0]).click
+    page_obj.year.send_keys(data_list[4]) # year
+    page_obj.right_nxt_btn.click
     # Address
-    address.send_keys(data_list[5])
-    right_nxt_btn.click
+    page_obj.address.send_keys(data_list[5])
+    page_obj.right_nxt_btn.click
     # Phone
-    phone.send_keys(data_list[6])
-    right_nxt_btn.click
+    page_obj.phone.send_keys(data_list[6])
+    page_obj.right_nxt_btn.click
     #skip relationships
-    right_nxt_btn.click
-    submit_btn.click
+    page_obj.right_nxt_btn.click
+    page_obj.submit_btn.click
   end
 
   def patient_id_icon
-    browser.find_element(xpath: "div/em/span[contains(text(), '100')]")
+    browser.find_element(xpath: "//div/span[contains(text(), '100')]")
   end
 
   def admin_btn
@@ -139,7 +155,7 @@ class Page
   end
 
   def add_task
-    browser.find_element(link_text: 'Add Task')
+    browser.find_element(xpath: "//div/a[text()='Add Task']")
   end
 
   def task_name_field
@@ -182,7 +198,11 @@ class Page
     browser.find_element(id: 'second-patient')
   end
 
-  def home_btn
-    browser.find_element(class: 'icon-home small')
+  def expected_id1
+    browser.find_element(xpath: "//div/span[text() ='1003HP']")
+  end
+
+  def expected_id2
+    browser.find_element(xpath: "//div/span[text() ='100HM1']")
   end
 end
