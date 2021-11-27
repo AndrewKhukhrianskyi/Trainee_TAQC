@@ -3,11 +3,7 @@ require_relative 'config'
 
 # Constants
 page_obj = Page.new
-when_patient = ['user click on the merge patient records by using one and the same patient data',
-                'user click on the merge patient records by using non-existed patients data']
-then_patient = ['user can not merge records of the same patient',
-                'user can not get a merged record of the non-existed patients']
-id_list = []
+
 # Test execution
 browser.get(MAIN_PAGE)
 page_obj.login('admin', 'Admin123')
@@ -137,18 +133,31 @@ Then('user can get a merged record') do
 
   # Negative tests merging
   # Non-existed patient & Patient with the same ID
-for patient_task in 0..then_patient.length - 1
-  When(when_patient[patient_task]) do
-    page_obj.data_mng_btn.click
-    page_obj.merge_btn.click
-    page_obj.merge_confirm_btn.click
-    page_obj.patient_id1.send_keys(NON_IDS[patient_task][0])
-    page_obj.patient_id2.send_keys(NON_IDS[patient_task][1])
-    page_obj.merge_confirm_btn.click
-  end
 
-  Then(then_patient[patient_task]) do
-    expect(page_obj.url_include?('mergePatients') && !page_obj.merge_confirm_btn.enabled?).to be(true)
-    page_obj.home_btn.click
-  end
+When('user click on the merge patient records by using one and the same patient data') do
+  page_obj.data_mng_btn.click
+  page_obj.merge_btn.click
+  page_obj.merge_confirm_btn.click
+  page_obj.patient_id1.send_keys(NON_IDS[0][0])
+  page_obj.patient_id2.send_keys(NON_IDS[0][1])
+  page_obj.merge_confirm_btn.click
+end
+
+Then('user can not get a merged record of the one and same patient') do
+  expect(page_obj.url_include?('mergePatients') && !page_obj.merge_confirm_btn.enabled?).to be(true)
+  page_obj.home_btn.click
+end
+
+When('user click on the merge patient records by using non-existed patients data') do
+  page_obj.data_mng_btn.click
+  page_obj.merge_btn.click
+  page_obj.merge_confirm_btn.click
+  page_obj.patient_id1.send_keys(NON_IDS[1][0])
+  page_obj.patient_id2.send_keys(NON_IDS[1][1])
+  page_obj.merge_confirm_btn.click
+end
+
+Then('user can not get a merged record of the non-existed patients') do
+  expect(page_obj.url_include?('mergePatients') && !page_obj.merge_confirm_btn.enabled?).to be(true)
+  browser.close()
 end

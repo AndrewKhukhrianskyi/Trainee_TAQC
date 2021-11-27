@@ -48,7 +48,7 @@ class Page
   end
 
   def reg_btn
-    browser.find_element(xpath: '//div/div/a[3]')
+    browser.find_element(xpath: '//div/div/a[4]')
   end
 
   def name
