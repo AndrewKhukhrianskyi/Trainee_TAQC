@@ -4,32 +4,27 @@ require_relative 'spec_helper'
 # Test constants
 main_pg = MainPage.new
 
-
 # Test execution process
 RSpec.describe 'UI test on the main page' do
-
-
   before(:all) do
     browser.get(MAIN_PAGE)
     main_pg.scroll_down.click
-    @mass_obj = page_init(main_pg)
-    @comments_mass_obj = com_page_init(main_pg)
   end
 
   after(:all) { browser.close }
 
   context 'Main page' do
-      it 'verifes that current widget is displayed' do
-          @mass_obj.each do |widget|
-            expect(widget.displayed?).to be(true)
-      end
+    page_init(main_pg).each do |widget_name, widget|
+        it "verifies that element #{widget_name} is displayed" do
+          expect(widget.displayed?).to be(true)
+        end
     end
   end
 
   context 'Comments page' do
     main_pg.post_example.click
-      it 'verifies that widgets on the comment page are displayed' do
-        @comments_mass_obj.each do |widget|
+      com_page_init(main_pg).each do |widget_name, widget|
+        it "verifies that element #{widget_name} is displayed" do
           expect(widget.displayed?).to be(true)
       end
     end

@@ -7,8 +7,7 @@ RSpec.describe 'Active page elements' do
     browser.get(MAIN_PAGE)
     main_pg.scroll_down.click
   end
-
-
+  
   after(:all) { browser.close }
 
   # Positive testing
