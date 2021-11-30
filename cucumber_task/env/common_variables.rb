@@ -5,8 +5,6 @@ ADMIN_PAGE = 'https://demo.openmrs.org/openmrs/admin/scheduler/scheduler.form'
 PATIENT_INFO = ['dave brubeck', 'F', '56', '15.Apr.1965']
 PATIENT_DATE = ['John', 'Edward', 'Snow', '25', '1984' 'aaa', '0000']
 
-
-
 GENDER = ['Male', 'Female']
 MONTHS = Array.new(13) {|m| m.to_s}
 NON_IDS = [['100HM1','100HM1'], ['208HRQ', '880NNN'] ]
