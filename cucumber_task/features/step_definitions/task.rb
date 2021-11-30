@@ -119,6 +119,8 @@ Then('user can see added tasks on the page') do
   page_obj.home_nav_btn.click
 =end
 
+# This test depends from test data to work (In some cases, test can not be executable because some patient IDs are not exist)
+=begin
 When('user click on the merge patient records') do
   page_obj.data_mng_btn.click
   page_obj.merge_btn.click
@@ -134,7 +136,7 @@ end
 Then('user can get a merged record') do
   expect(page_obj.expected_id1.text.include?('1003HP') && page_obj.expected_id2.text.include?('100HM1')).to be(true)
   page_obj.home_btn.click
-end
+=end
 
 # Negative tests merging
 # Non-existed patient & Patient with the same ID
