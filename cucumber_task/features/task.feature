@@ -17,9 +17,9 @@ Scenario: User can not register an existing patient
 #  When user click on the add task page and fill all fields by using valid data
 #  Then user can see added tasks on the page
 
-#Scenario: User can merge patients data on the data management page
-#  When user click on the merge patient records
-#  Then user can get a merged record
+Scenario: User can merge patients data on the data management page
+ When user click on the merge patient records
+ Then user can get a merged record
 
 Scenario: User can not merge data of the one and the same patient
   When user click on the merge patient records by using one and the same patient data
