@@ -1,4 +1,5 @@
-#Not working
+# This file is not work
+# Not working
 it 'verifiies that banner is displayed' do
   expect(main_pg.banner.displayed?).to be(true)
 end

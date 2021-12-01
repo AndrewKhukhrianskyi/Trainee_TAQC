@@ -76,7 +76,7 @@ class MainPage
   end
 
   def post_example
-    browser.find_element(link_text: 'Hello world!')
+    browser.find_element(xpath: '//ul/li/a[text()="Hello world!"]')
   end
 
   def comment
@@ -127,15 +127,15 @@ class MainPage
     browser.find_element(id: 'submit')
   end
 
-  def widgets
-    wdg = [banner, banner_text, banner_subtext,
-          search_field, submit_search, posts_recent,
-          comments, archives, categories, meta,
-          entry_data, entry_meta, entry_title, footer]
+  def page_init(page)
+    page_init = { 'banner' => page.banner, 'text banner' => page.banner_text, 'subtext banner' => page.banner_subtext,
+                  'search field' => page.search_field, 'new posts' => page.posts_recent, 'comments '=> page.comments,
+                  'archives tab' => page.archives, 'categories tab' => page.categories, 'meta bar' => page.meta,
+                  'data entry' => page.entry_data, 'meta entry' => page.entry_meta, 'title entry' => page.entry_title, 'footer bar' => page.footer}
   end
 
-  def comments_wdg
-    comment_wdg = [comment_field, author, website_url, submit_btn]
+  def com_page_init(page)
+    comment_wdg = {'comment field' => page.comment_field, 'author bar' => page.author,
+                   'comments page url' => page.website_url, 'submit button' => page.submit_btn}
   end
-
 end
