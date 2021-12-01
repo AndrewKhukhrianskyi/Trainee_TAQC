@@ -127,4 +127,15 @@ class MainPage
     browser.find_element(id: 'submit')
   end
 
+  def widgets
+    wdg = [banner, banner_text, banner_subtext,
+          search_field, submit_search, posts_recent,
+          comments, archives, categories, meta,
+          entry_data, entry_meta, entry_title, footer]
+  end
+
+  def comments_wdg
+    comment_wdg = [comment_field, author, website_url, submit_btn]
+  end
+
 end
