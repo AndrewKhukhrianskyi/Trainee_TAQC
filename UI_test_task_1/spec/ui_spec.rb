@@ -13,18 +13,16 @@ RSpec.describe 'UI test on the main page' do
 
   after(:all) { browser.close }
 
-  context 'Main page' do
-    page_init(main_pg).each do |widget_name, widget|
-        it "verifies that element #{widget_name} is displayed" do
-          expect(widget.displayed?).to be(true)
+  context 'Main page & Comments page' do
+    it "verifies that element all widgets are displayed on the main page" do
+        main_pg.page_init(main_pg).each do |widget_name, widget|
+            expect(widget.displayed?).to be(true)
         end
     end
-  end
 
-  context 'Comments page' do
-    main_pg.post_example.click
-      com_page_init(main_pg).each do |widget_name, widget|
-        it "verifies that element #{widget_name} is displayed" do
+    it "verifies that element all widgets are displayed on the comments page" do
+      main_pg.post_example.click
+      main_pg.com_page_init(main_pg).each do |widget_name, widget|
           expect(widget.displayed?).to be(true)
       end
     end
