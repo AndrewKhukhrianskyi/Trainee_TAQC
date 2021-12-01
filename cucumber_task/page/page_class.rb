@@ -138,6 +138,10 @@ class Page
     page_obj.submit_btn.click
   end
 
+  def similar_patient_bar
+    browser.find_element(xpath: '//div/div[@id="similarPatients"]')
+  end
+
   def patient_id_icon
     browser.find_element(xpath: "//div/span[contains(text(), '100')]")
   end

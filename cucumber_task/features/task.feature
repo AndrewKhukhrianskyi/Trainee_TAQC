@@ -8,9 +8,9 @@ Scenario: User can register a new patient
   When user fills all fields on patient register page
   Then new patient is created
 
-Scenario: User can not register an existing patient
+Scenario: User can get warning about existing patient registration
   When register patient is opened and all data fields are filled
-  Then user can not create an existing patient
+  Then user can get an information bar about existing patient
 
 # BUG - NON-INTERACTABLE ELEMENTS
 # Scenario: User can add a new task in the system administration page

@@ -66,8 +66,6 @@ Then('new patient is created') do
   page_obj.home_btn.click
 end
 
-# Bug founded - we can create an existed patient
-=begin
 When('register patient is opened and all data fields are filled') do
   page_obj.reg_btn.click
 
@@ -97,13 +95,11 @@ When('register patient is opened and all data fields are filled') do
   page_obj.right_nxt_btn.click
 end
 
-
-
-Then('user can not create an existing patient') do
-  expect(page_obj.submit_btn.enabled?).to be(false)
+Then('user can get an information bar about existing patient') do
+  expect(page_obj.similar_patient_bar.displayed?).to be(true)
   page_obj.home_btn.click
 end
-=end
+
 
 # Bug - non-interactable elements
 =begin
