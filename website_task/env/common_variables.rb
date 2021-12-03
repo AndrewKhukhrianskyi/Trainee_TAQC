@@ -1,2 +1,3 @@
-MAIN_PAGE = 'https://vovk.com/ua/'
-TEXT = ['Test', 'Testovich', 'test@example.com', 'qwerty123', 'qwerty123', '073111111']
+MAIN_PAGE = 'https://www.artspacesol.com/shop/'
+VALID_DATA = 'Стікер'
+INVALID_DATA = (0...8).map { (65 + rand(26)).chr }.join
