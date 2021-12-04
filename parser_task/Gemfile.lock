@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    childprocess (4.1.0)
     date (3.2.2)
     json (2.6.1)
     nokogiri (1.12.5-x86_64-darwin)
@@ -10,6 +11,12 @@ GEM
       time
       uri
     racc (1.6.0)
+    rexml (3.2.5)
+    rubyzip (2.3.2)
+    selenium-webdriver (4.1.0)
+      childprocess (>= 0.5, < 5.0)
+      rexml (~> 3.2, >= 3.2.5)
+      rubyzip (>= 1.2.2)
     stringio (3.0.1)
     time (0.2.0)
       date
@@ -22,6 +29,7 @@ DEPENDENCIES
   json
   nokogiri
   open-uri
+  selenium-webdriver
 
 BUNDLED WITH
    2.2.29
