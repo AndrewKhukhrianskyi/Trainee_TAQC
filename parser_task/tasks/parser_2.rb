@@ -9,7 +9,7 @@ search_element.include?(' ') ? search_element.gsub!(' ', '+').chomp : search_ele
 html_page = Nokogiri::HTML(URI.open("https://www.google.com/search?q=#{search_element}"))
 search_results = html_page.xpath("//div/a/h3//text()")
 # Bug - no links
-links = html_page.xpath('//div/cite')
+links = html_page.xpath('//cite')
 
 # All searchable results
 puts '--- All founded results: ---'
