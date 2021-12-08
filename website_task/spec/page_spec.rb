@@ -15,7 +15,7 @@ RSpec.describe('Webpage testing') do
     browser.close()
   end
 
-  context('Webpage testing') do
+  context('Functional testing process') do
     it 'verifies that webpage is displayed' do
       expect(web_pg.main_page.displayed?).to be(true)
     end
@@ -31,8 +31,8 @@ RSpec.describe('Webpage testing') do
       items_pg.item_char.click
       items_pg.item_char_set.click
       items_pg.add_to_cart_btn.click
-      # Работет но нужно время на обработку запроса (пауза нужна)
       cart_pg.cart_icon.click
+      binding.pry
       web_pg.wait_for(cart_pg.empty_cart_title.displayed?).to be(false)
       expect(cart_pg.cart_item.displayed?).to be(true)
     end
@@ -40,7 +40,8 @@ RSpec.describe('Webpage testing') do
     it 'verifies that user can delete item from cart' do
       cart_pg.remove_item_btn.click
       web_pg.wait_for(cart_pg.remove_item_btn.displayed?).to be(false)
-      expect(cart_pg.empty_cart_title.displayed?).to be(true)
+      binding.pry
+      expect(cart_pg.empty_cart_item.displayed?).to be(false)
     end
 
     it 'verifies that user can find item by using valid data' do
