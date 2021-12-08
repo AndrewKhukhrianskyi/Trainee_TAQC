@@ -15,6 +15,9 @@ Gems
 7. faraday
 8. rubocop
 9. capybara
+10. json
+11. nokogiri
+12. open-uri
 
 Programming languages
 1. Ruby 3.0.2p107
@@ -42,7 +45,7 @@ The current project consist the next architecture (most of the file projects)
 
 ### RSpec
 RSpec part of the current project have the next subprojects
-- UI website testing (UI Test task 1)
+- RSpec UI testing (RSpec UI task)
 - File creating testing (File task)
 - Website shop testing (website task)
 1. Choose one project from above
@@ -68,6 +71,17 @@ cd cucumber_task
 ```
 Example:
 BROWSER=browser_name bundle exec cucumber features/some.feature
+```
+### Parser
+Parser system requires special gems, which helps you to get access to the website links & HTML pages.
+1. By using terminal, go to the next folder
+```
+cd parser_tasks
+```
+2. Start test execution process by using the next command
+```
+Example:
+ruby parser_file.rb
 ```
 
 ### Deployment
