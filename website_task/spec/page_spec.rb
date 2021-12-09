@@ -31,23 +31,16 @@ RSpec.describe('Webpage testing') do
       items_pg.item_char.click
       items_pg.item_char_set.click
       items_pg.add_to_cart_btn.click
-      cart_pg.cart_icon.click
-      binding.pry
-      web_pg.wait_for(cart_pg.empty_cart_title.displayed?).to be(false)
+      web_pg.wait.until{cart_pg.cart_tab.displayed?}
       expect(cart_pg.cart_item.displayed?).to be(true)
+      cart_pg.close_cart_tab.click
     end
 
-    it 'verifies that user can delete item from cart' do
-      cart_pg.remove_item_btn.click
-      web_pg.wait_for(cart_pg.remove_item_btn.displayed?).to be(false)
-      binding.pry
-      expect(cart_pg.empty_cart_item.displayed?).to be(false)
-    end
 
     it 'verifies that user can find item by using valid data' do
       search_pg.search_field.send_keys(VALID_DATA)
       search_pg.search_icon.click
-      expect(search_pg.no_results.displayed?).to be(false)
+      expect(search_pg.search_element.displayed?).to be(true)
     end
 
     it 'verifies that user can find item by using invalid data' do
@@ -56,7 +49,7 @@ RSpec.describe('Webpage testing') do
       expect(search_pg.no_results.displayed?).to be(true)
     end
 
-    it ('verifies that user can not get access by using hacker features') do
+    it ('verifies that user can not get access by using XSS or SQL-injections') do
       SECURITY_TEST_DATA.each do |data|
         search_pg.search_field.send_keys(data)
         expect(search_pg.no_results.displayed?).to be(true)

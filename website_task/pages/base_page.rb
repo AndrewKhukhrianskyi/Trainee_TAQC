@@ -7,10 +7,7 @@ class WebPage
     browser.find_element(class: 'main-page-wrapper')
   end
 
-  def wait_for(&block)
-    wait = Selenium::WebDriver::Wait.new(timeout: 60, interval: 10)
-    wait.until do
-      block.call
-    end
+  def wait
+    wait = Selenium::WebDriver::Wait.new(:timeout => 5)
   end
 end
