@@ -38,6 +38,7 @@ RSpec.describe('Webpage testing') do
 
 
     it 'verifies that user can find item by using valid data' do
+      web_pg.wait.until{!cart_pg.cart_tab.displayed?}
       search_pg.search_field.send_keys(VALID_DATA)
       search_pg.search_icon.click
       expect(search_pg.search_element.displayed?).to be(true)
