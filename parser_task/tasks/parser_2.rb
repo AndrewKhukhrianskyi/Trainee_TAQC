@@ -3,14 +3,14 @@ require 'google_search_results'
 puts 'What would you like to find?'
 query = gets.chomp
 
-puts 'Which pages do you need? (0 page means that you find all results on the first page)'
+puts 'Which page do you need? (0 page means that you find all results on the first page)'
 page = gets.chomp
 
 # Query requirements
 params = {
   engine: 'google',
   q: query,
-  api_key: '3202a7c968cd50fc6bb50da69472015d63fd01bce67903cc5d1144cafdbd5ec5',
+  api_key: 'your_api_key',
   start: page
 }
 
