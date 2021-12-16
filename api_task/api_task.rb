@@ -7,8 +7,7 @@ require_relative 'common_variables'
 
 # Config file for the API key
 MailSlurpClient.configure do |config|
-    config.api_key['x-api-key'] = "8bf2119ee0ece8075af34e0f01b24d2820d78f1fc67670d91a43df9fa200017a"
-end
+    config.api_key['x-api-key'] = "api_key"
 
 # Constants
 inbox_controller = MailSlurpClient::InboxControllerApi.new
