@@ -7,8 +7,8 @@ require_relative 'common_variables'
 
 # Config file for the API key
 MailSlurpClient.configure do |config|
-    config.api_key['x-api-key'] = "api_key"
-
+    config.api_key['x-api-key'] = "your API key"
+end
 # Constants
 inbox_controller = MailSlurpClient::InboxControllerApi.new
 waitfor_controller = MailSlurpClient::WaitForControllerApi.new
@@ -44,25 +44,31 @@ RSpec.describe('API testing') do
       expect(update_inbox.description).to eq(DESC_UPD)
     end
 
-# HTMl как то нужно передавать
+# Проблема с почтой
     it 'verifies that user can send email and check data into them' do
       inbox = inbox_controller.create_inbox
-      inbox_controller.send_email(inbox.id, {
-        send_email_options: {
-        to: (EMAIL),
+      inbox_2 = inbox_controller.create_inbox
+      opts = {
+      send_email_options: MailSlurpClient::SendEmailOptions.new(
+      {
+        to: [inbox_2.email_address],
         subject: SUBJECT,
-        isHTML: true,
+        from: inbox.email_address,
+        is_html: true,
         body: HTML_BODY
-        }
-      })
+        })
+      }
+
+
+      inbox_controller.send_email(inbox.id, opts)
+      expect(inbox_2.id).to be_truthy
 
       email_read = waitfor_controller.wait_for_latest_email({
-        inbox_id: inbox.id,
+        inbox_id: inbox_2.id,
         unread_only: true,
         timeout: 30_000
         })
 
-      expect(email_read.subject).to include(SUBJECT)
       expect(email_read.body).to include(HTML_BODY)
     end
   end
