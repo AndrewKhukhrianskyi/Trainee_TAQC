@@ -44,7 +44,6 @@ RSpec.describe('API testing') do
       expect(update_inbox.description).to eq(DESC_UPD)
     end
 
-# Проблема с почтой
     it 'verifies that user can send email and check data into them' do
       inbox = inbox_controller.create_inbox
       inbox_2 = inbox_controller.create_inbox
