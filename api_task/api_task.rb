@@ -1,14 +1,8 @@
 # Documentation => https://www.mailslurp.com/docs/ruby/
 
-require 'rspec'
-require 'mailslurp_client'
+require_relative 'config/common_variables'
+require_relative 'config/config_file'
 
-require_relative 'common_variables'
-
-# Config file for the API key
-MailSlurpClient.configure do |config|
-    config.api_key['x-api-key'] = "your API key"
-end
 # Constants
 inbox_controller = MailSlurpClient::InboxControllerApi.new
 waitfor_controller = MailSlurpClient::WaitForControllerApi.new
