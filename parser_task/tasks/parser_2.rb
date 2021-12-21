@@ -6,11 +6,16 @@ query = gets.chomp
 puts 'Which page do you need? (0 page means that you find all results on the first page)'
 page = gets.chomp
 
+puts 'Which search engine would you like to use? (e.g google, bing etc.)'
+eng = gets.chomp
+
+puts 'Enter your API key (Copy your API key and paste him in the field below): '
+api = gets.chomp
 # Query requirements
 params = {
-  engine: 'google',
+  engine: eng,
   q: query,
-  api_key: 'your_api_key',
+  api_key: api,
   start: page
 }
 
