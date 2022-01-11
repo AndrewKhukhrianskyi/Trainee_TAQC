@@ -18,6 +18,7 @@ Gems
 10. json
 11. nokogiri
 12. open-uri
+13. mailslurp
 
 Programming languages
 1. Ruby 3.0.2p107
