@@ -1,0 +1,4 @@
+# JMeter generated Cookie file
+	TRUE		FALSE	0	username	admin
+	TRUE		FALSE	0	password	Admin123
+	TRUE		FALSE	0	seesionLocation	6
