@@ -1,0 +1,2 @@
+# JMeter generated Authorization file
+https://demo.openmrs.org/openmrs/login.htm	admin1	Admin123			BASIC
